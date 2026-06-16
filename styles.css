@@ -1,0 +1,450 @@
+/* ==========================================================================
+   pievusmulkinimas.lt — stiliai (Stilius C: žalias blokas + pjovimo ruožai)
+   Paletė 60-30-10 · Anton (antraštės) + DM Sans (tekstas)
+   ========================================================================== */
+
+:root {
+  /* Spalvos */
+  --bg:          #FAFAF8;   /* ~60% neutralus pagrindas */
+  --surface:     #ECEEE9;   /* pilkos „surface" zonos */
+  --ink:         #15181A;   /* pagrindinis tekstas */
+  --ink-muted:   #4A4F4B;   /* antrinis tekstas (≥4.5:1 ant bg) */
+  --ink-faint:   #5A5F5A;   /* šviesiausias leistinas ant surface */
+  --green:       #2D5A3D;   /* ~30% akcentas */
+  --green-row:   #356544;   /* ruožų antra juosta */
+  --green-dark:  #234A31;   /* footer / tamsesnis */
+  --on-green:    #DCE6DF;   /* tekstas ant žalio */
+  --amber:       #C75A12;   /* ~10% CTA */
+  --amber-dark:  #A8480D;   /* CTA hover/active */
+  --amber-soft:  #F0C89A;   /* eyebrow ant tamsaus */
+
+  /* Tipografija */
+  --font-display: 'Anton', Impact, system-ui, sans-serif;
+  --font-body:    'DM Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+
+  /* Išdėstymas */
+  --maxw: 1120px;
+  --pad: clamp(20px, 5vw, 48px);
+  --radius: 10px;
+  --header-h: 64px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+
+/* --- Bendri komponentai ------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin: 0 0 12px;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+h2.display { font-size: clamp(26px, 4vw, 38px); }
+h3 { font-size: 17px; font-weight: 500; margin: 0 0 6px; }
+
+.lead { font-size: clamp(15px, 1.8vw, 18px); color: var(--ink-muted); max-width: 60ch; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 13px 24px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color .15s ease, transform .05s ease;
+}
+.btn:active { transform: scale(.98); }
+.btn--amber { background: var(--amber); color: #fff; }
+.btn--amber:hover { background: var(--amber-dark); }
+.btn--ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.45); }
+.btn--ghost:hover { background: rgba(255,255,255,.12); }
+
+/* --- Skip link ---------------------------------------------------------- */
+.skip-link {
+  position: absolute; left: 8px; top: -48px;
+  background: var(--amber); color: #fff;
+  padding: 10px 16px; border-radius: 8px; z-index: 100;
+  transition: top .15s ease;
+}
+.skip-link:focus { top: 8px; }
+
+/* --- Antraštė / navigacija ---------------------------------------------- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--green);
+}
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; min-height: var(--header-h);
+  position: relative;
+}
+.brand {
+  font-family: var(--font-display);
+  font-size: 20px; color: #fff; text-decoration: none;
+  text-transform: uppercase; letter-spacing: .01em;
+}
+.nav__links {
+  display: flex; align-items: center; gap: 22px;
+  list-style: none; margin: 0; padding: 0;
+}
+.nav__links a {
+  text-decoration: none; color: var(--on-green);
+  font-weight: 500; font-size: 14px;
+}
+.nav__links a:hover { color: #fff; }
+.nav__actions { display: flex; align-items: center; gap: 10px; }
+.nav__cta { padding: 9px 16px; font-size: 14px; }
+.nav__toggle {
+  display: none;
+  width: 42px; height: 38px;
+  align-items: center; justify-content: center;
+  background: transparent; border: 1px solid rgba(255,255,255,.4);
+  color: #fff; border-radius: 8px; cursor: pointer;
+}
+.nav__toggle .bars,
+.nav__toggle .bars::before,
+.nav__toggle .bars::after {
+  display: block; width: 20px; height: 2px; background: #fff; border-radius: 2px;
+}
+.nav__toggle .bars { position: relative; }
+.nav__toggle .bars::before,
+.nav__toggle .bars::after { content: ""; position: absolute; left: 0; }
+.nav__toggle .bars::before { top: -6px; }
+.nav__toggle .bars::after  { top: 6px; }
+
+/* --- Hero --------------------------------------------------------------- */
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+/* Dešinė – pilna paveikslėlio zona */
+.hero__right {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.hero__tint {
+  position: absolute;
+  inset: 0;
+  background: rgba(35, 74, 49, 0.72);
+}
+
+/* Paslaugų nuorodos dešinėje pusėje */
+.hero__services {
+  position: absolute;
+  right: clamp(28px, 5vw, 80px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero__svc {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: clamp(15px, 1.6vw, 18px);
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,.35);
+  min-width: 230px;
+  transition: color .15s;
+}
+.hero__svc:first-child { border-top: 1px solid rgba(255,255,255,.35); }
+.hero__svc:hover { color: var(--amber-soft); }
+
+.hero__svc-chev {
+  color: var(--amber);
+  font-size: 13px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* Kairė – balta įstriža plokštė */
+.hero__left {
+  position: relative;
+  z-index: 2;
+  width: 62%;
+  min-height: 100dvh;
+  background: #fff;
+  clip-path: polygon(0 0, 100% 0, 78% 100%, 0 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(48px, 6vw, 80px) 16% clamp(48px, 6vw, 80px) var(--pad);
+}
+
+.hero__eyebrow {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin: 0 0 18px;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 8.5vw, 108px);
+  font-weight: 400;
+  line-height: 0.92;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  background: var(--amber);
+  display: inline-block;
+  padding: 6px 22px 12px 0;
+  margin: 0 0 28px;
+}
+
+.hero__body { margin-bottom: 28px; }
+
+.hero__subtitle {
+  font-weight: 600;
+  font-size: 17px;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+
+.hero__desc {
+  font-size: 15px;
+  color: var(--ink-muted);
+  max-width: 44ch;
+  margin: 0;
+  line-height: 1.7;
+}
+
+.hero__cta-btn { align-self: flex-start; }
+
+/* --- Raktažodžių juosta (CSS marquee) ----------------------------------- */
+.ticker {
+  background: var(--ink);
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ticker__track {
+  display: inline-flex; gap: 0;
+  animation: ticker 34s linear infinite;
+  will-change: transform;
+}
+.ticker__track span {
+  font-family: var(--font-display);
+  font-size: 14px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--amber-soft);
+  padding: 10px 0; white-space: nowrap;
+}
+@keyframes ticker { to { transform: translateX(-25%); } }
+
+/* --- Sekcijos ----------------------------------------------------------- */
+.section { padding: clamp(44px, 7vw, 80px) 0; scroll-margin-top: calc(var(--header-h) + 12px); }
+.section--surface { background: var(--surface); }
+.section__head { max-width: 60ch; margin-bottom: 28px; }
+
+/* Paslaugos */
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: #fff;
+  border: 1px solid rgba(21,24,26,.10);
+  border-radius: 12px;
+  padding: 22px;
+}
+.card .icon { width: 28px; height: 28px; color: var(--green); }
+.card h3 { margin-top: 12px; }
+.card p { margin: 0; color: var(--ink-muted); font-size: 15px; }
+
+/* Deklaruojamos — amber juosta */
+.declared { background: var(--amber); color: #fff; }
+.declared .container { padding-block: clamp(36px, 6vw, 56px); }
+.declared h2 { color: #fff; }
+.declared p { color: #fff; max-width: 62ch; margin: 12px 0 0; }
+
+/* Kaip vyksta — sunumeruoti žingsniai (tikras procesas) */
+.steps { counter-reset: step; display: grid; gap: 14px; }
+.step {
+  display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start;
+  padding: 18px 0; border-top: 1px solid rgba(21,24,26,.12);
+}
+.step:first-child { border-top: none; }
+.step::before {
+  counter-increment: step; content: counter(step, decimal-leading-zero);
+  font-family: var(--font-display); font-size: 22px; color: var(--amber);
+  line-height: 1;
+}
+.step h3 { margin: 0 0 4px; }
+.step p { margin: 0; color: var(--ink-muted); font-size: 15px; }
+
+/* Kaina */
+.pricing { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.pricing .price { font-family: var(--font-display); font-size: clamp(28px, 5vw, 40px); color: var(--green); }
+.pricing .note { color: var(--ink-muted); }
+
+/* Regionas */
+.region__towns { list-style: none; margin: 16px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.region__towns li {
+  background: #fff; border: 1px solid rgba(21,24,26,.10);
+  border-radius: 999px; padding: 7px 14px; font-size: 14px;
+}
+
+/* Darbai */
+.works {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+}
+.works img { aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; width: 100%; }
+
+/* DUK — <details> akordeonas, JS nereikia */
+.faq { max-width: 760px; }
+.faq details {
+  border-top: 1px solid rgba(21,24,26,.14);
+}
+.faq details:last-child { border-bottom: 1px solid rgba(21,24,26,.14); }
+.faq summary {
+  list-style: none; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 18px 0; font-weight: 500; font-size: 16px;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .plus { color: var(--ink-faint); font-size: 18px; flex: none; transition: transform .15s ease; }
+.faq details[open] summary .plus { transform: rotate(45deg); }
+.faq details p { margin: 0 0 18px; color: var(--ink-muted); }
+
+/* Kontaktai */
+.contact { background: var(--green); color: var(--on-green); }
+.contact .container { padding-block: clamp(44px, 7vw, 72px); text-align: center; }
+.contact h2 { color: #fff; }
+.contact__cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 22px; }
+.contact a.plain { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.contact .eyebrow { color: var(--amber-soft); }
+.contact .lead { color: var(--on-green); margin-inline: auto; }
+.callbar svg { width: 20px; height: 20px; }
+
+/* Footer */
+.site-footer { background: var(--green-dark); color: var(--on-green); }
+.site-footer .container {
+  padding-block: 28px;
+  display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: center;
+  font-size: 13px;
+}
+.site-footer a { color: #fff; }
+
+/* --- Mobile „sticky" skambučio juosta ----------------------------------- */
+.callbar {
+  display: none;
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+  background: var(--amber);
+}
+.callbar a {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  color: #fff; text-decoration: none; font-weight: 500;
+  padding: 14px; font-size: 16px;
+}
+
+/* --- Fokuso matomumas (a11y) -------------------------------------------- */
+:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; border-radius: 4px; }
+.site-header :focus-visible, .hero :focus-visible, .contact :focus-visible { outline-color: #fff; }
+
+/* --- Responsyvumas ------------------------------------------------------ */
+@media (max-width: 860px) {
+  .works { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .nav__toggle { display: inline-flex; }
+  .nav__links {
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--green);
+    border-top: 1px solid rgba(255,255,255,.12);
+    padding: 6px var(--pad) 14px;
+    display: none;
+  }
+  .nav__links.is-open { display: flex; }
+  .nav__links li { border-bottom: 1px solid rgba(255,255,255,.08); }
+  .nav__links a { display: block; padding: 12px 0; }
+
+  /* Hero: mobilus – pilnas plotis, paveikslėlis fone */
+  .hero { min-height: 100dvh; }
+  .hero__left {
+    width: 100%;
+    min-height: 100dvh;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    padding: clamp(40px, 8vw, 60px) var(--pad) clamp(72px, 14vw, 100px);
+  }
+  .hero__services { display: none; }
+
+  .works { grid-template-columns: 1fr 1fr; }
+
+  .callbar { display: block; }
+  body { padding-bottom: 56px; } /* vietos „sticky" juostai */
+  .site-footer { margin-bottom: 0; }
+}
+
+@media (max-width: 460px) {
+  .works { grid-template-columns: 1fr; }
+}
+
+/* --- Reduced motion ----------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ticker__track { animation: none; }
+  .btn, .faq summary .plus { transition: none; }
+}
