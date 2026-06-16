@@ -80,24 +80,50 @@ h3 { font-size: 17px; font-weight: 500; margin: 0 0 6px; }
 .lead { font-size: clamp(15px, 1.8vw, 18px); color: var(--ink-muted); max-width: 60ch; }
 
 .btn {
+  position: relative;
+  isolation: isolate;            /* tekstas lieka virš ::before */
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   font-family: var(--font-body);
   font-weight: 500;
   font-size: 15px;
   text-decoration: none;
-  padding: 13px 24px;
-  border-radius: 8px;
-  border: 1px solid transparent;
+  padding: 14px 36px;            /* platesnis horizontalus tarpas įstrižiems kraštams */
+  background: transparent;       /* tikrasis fonas perkeltas į ::before */
+  border: 0;
   cursor: pointer;
-  transition: background-color .15s ease, transform .05s ease;
+  transition: transform .05s ease;
 }
+
+/* Įstriža (45°) plokštė – tik fonui, tekstas nesisukamas */
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: skewX(-45deg);
+  border-radius: 2px;
+  border: 1px solid transparent;
+  transition: background-color .15s ease, border-color .15s ease;
+}
+
 .btn:active { transform: scale(.98); }
-.btn--amber { background: var(--amber); color: #fff; }
-.btn--amber:hover { background: var(--amber-dark); }
-.btn--ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.45); }
-.btn--ghost:hover { background: rgba(255,255,255,.12); }
+
+.btn--amber { color: #fff; }
+.btn--amber::before { background: var(--amber); }
+.btn--amber:hover::before { background: var(--amber-dark); }
+
+.btn--ghost { color: #fff; }
+.btn--ghost::before { background: transparent; border-color: rgba(255,255,255,.45); }
+.btn--ghost:hover::before { background: rgba(255,255,255,.12); }
+
+/* Mažas nav mygtukas – daugiau horizontalaus tarpo posvyriui */
+.nav__cta { padding: 9px 28px; font-size: 14px; }
+
+/* Kontaktų sekcija – didesnis tarpas, kad dvi plokštės nepersidengtų */
+.contact__cta { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; margin-top: 22px; }
 
 /* --- Skip link ---------------------------------------------------------- */
 .skip-link {
@@ -650,7 +676,7 @@ h3 { font-size: 17px; font-weight: 500; margin: 0 0 6px; }
   top: 0;
   z-index: 1;
   overflow: hidden;
-  height: 25%;
+  height: 24vw;
   width: 25%;
   transform: translateX(100%) skew(-45deg);
   transition: transform cubic-bezier(0.77, 0, 0.175, 1);
@@ -727,6 +753,20 @@ h3 { font-size: 17px; font-weight: 500; margin: 0 0 6px; }
   .family__tripple--1 { right: auto; left: 0; }
   .family__tripple--2 { right: auto; left: 30%; }
   .family__tripple--3 { right: 0; }
+}
+
+@media (min-width: 769px) {
+  .family__content {
+    align-items: flex-start;          /* nebe vertikalus centras */
+    padding-top: calc(24vw + 40px);   /* 24vw = .family__tripple aukštis + tarpas */
+  }
+}
+
+@media (max-width: 1024px) {
+  .family,
+  .family__content {
+    min-height: auto;
+  }
 }
 
 /* --- Sekcijos ----------------------------------------------------------- */
