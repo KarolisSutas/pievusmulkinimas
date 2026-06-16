@@ -158,18 +158,18 @@
     <!-- HERO -->
     <section class="hero" aria-label="Įžanga">
       <div class="hero__right">
-        <img class="hero__bg-img" src="smulkinimas-1.jpg" width="1600" height="900" fetchpriority="high"
+        <img class="hero__bg-img" src="smulkinimas-1-revert.png" width="1600" height="900" fetchpriority="high"
           alt="Traktorius su mulčeriu pievų smulkinimo darbams Utenos rajone">
         <div class="hero__tint" aria-hidden="true"></div>
         <nav class="hero__services" aria-label="Paslaugos">
           <a href="#paslauga" class="hero__svc">
             <span class="hero__svc-chev" aria-hidden="true">&#10095;</span>Pievų smulkinimas
           </a>
-          <a href="#paslauga" class="hero__svc">
-            <span class="hero__svc-chev" aria-hidden="true">&#10095;</span>Mulčiavimas
+          <a href="#kaina" class="hero__svc">
+            <span class="hero__svc-chev" aria-hidden="true">&#10095;</span>Kaina
           </a>
-          <a href="#paslauga" class="hero__svc">
-            <span class="hero__svc-chev" aria-hidden="true">&#10095;</span>Šienavimas
+          <a href="#technika" class="hero__svc">
+            <span class="hero__svc-chev" aria-hidden="true">&#10095;</span>Technika
           </a>
         </nav>
       </div>
@@ -188,10 +188,14 @@
     <!-- RAKTAŽODŽIŲ JUOSTA -->
     <div class="ticker" aria-hidden="true">
       <div class="ticker__track">
-        <span>smulkinimas&nbsp;·&nbsp;mulčiavimas&nbsp;·&nbsp;šienavimas&nbsp;·&nbsp;deklaruojamos pievos&nbsp;·&nbsp;</span>
-        <span>smulkinimas&nbsp;·&nbsp;mulčiavimas&nbsp;·&nbsp;šienavimas&nbsp;·&nbsp;deklaruojamos pievos&nbsp;·&nbsp;</span>
-        <span>smulkinimas&nbsp;·&nbsp;mulčiavimas&nbsp;·&nbsp;šienavimas&nbsp;·&nbsp;deklaruojamos pievos&nbsp;·&nbsp;</span>
-        <span>smulkinimas&nbsp;·&nbsp;mulčiavimas&nbsp;·&nbsp;šienavimas&nbsp;·&nbsp;deklaruojamos pievos&nbsp;·&nbsp;</span>
+        <span>smulkinimas&nbsp;·&nbsp;mulčiavimas&nbsp;·&nbsp;šienavimas&nbsp;·&nbsp;deklaruojamos
+          pievos&nbsp;·&nbsp;</span>
+        <span>smulkinimas&nbsp;·&nbsp;mulčiavimas&nbsp;·&nbsp;šienavimas&nbsp;·&nbsp;deklaruojamos
+          pievos&nbsp;·&nbsp;</span>
+        <span>smulkinimas&nbsp;·&nbsp;mulčiavimas&nbsp;·&nbsp;šienavimas&nbsp;·&nbsp;deklaruojamos
+          pievos&nbsp;·&nbsp;</span>
+        <span>smulkinimas&nbsp;·&nbsp;mulčiavimas&nbsp;·&nbsp;šienavimas&nbsp;·&nbsp;deklaruojamos
+          pievos&nbsp;·&nbsp;</span>
       </div>
     </div>
 
@@ -235,12 +239,28 @@
       </div>
     </section>
 
+    <!-- KAINA -->
+    <section class="section" id="kaina">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">Kaina</p>
+          <h2 class="display">Kaina pagal plotą</h2>
+        </div>
+        <div class="pricing">
+          <p class="price">nuo 60 €/ha</p>
+          <p class="note">Galutinė kaina priklauso nuo ploto, pievos būklės ir atstumo. Tiksliausią kainą pasakome
+            telefonu – skambinkite <a href="tel:+37062514383">+370 625 14383</a>.</p>
+        </div>
+      </div>
+    </section>
+    
+
     <!-- KAIP VYKSTA (family stilius) -->
     <section class="family" id="kaip-vyksta">
 
       <!-- Dešinė didelė nuotrauka su geltonu overlay -->
       <div class="family__diag family__diag--br family__diag--overlay">
-        <div class="family__diag-img" style="background-image:url('case-4.JPG')"></div>
+        <div class="family__diag-img" style="background-image:url('case-12.JPG')"></div>
       </div>
 
       <!-- Viršutinės 3 mini nuotraukos (tripple) -->
@@ -279,21 +299,6 @@
 
     </section>
 
-    <!-- KAINA -->
-    <section class="section" id="kaina">
-      <div class="container">
-        <div class="section__head">
-          <p class="eyebrow">Kaina</p>
-          <h2 class="display">Kaina pagal plotą</h2>
-        </div>
-        <div class="pricing">
-          <p class="price">nuo {{KAINA_NUO}} €/ha</p>
-          <p class="note">Galutinė kaina priklauso nuo ploto, pievos būklės ir atstumo. Tiksliausią kainą pasakome
-            telefonu – skambinkite <a href="tel:+37062514383">+370 625 14383</a>.</p>
-        </div>
-      </div>
-    </section>
-
     <!-- REGIONAS -->
     <section class="section section--surface" id="regionas">
       <div class="container">
@@ -316,16 +321,14 @@
       </div>
     </section>
 
-    <!-- DARBAI -->
-    <section class="section" id="darbai">
+    <!-- TECHNIKA -->
+    <section class="section" id="technika">
       <div class="container">
         <div class="section__head">
-          <p class="eyebrow">Atlikti darbai</p>
-          <h2 class="display">Mūsų technika</h2>
+          <p class="eyebrow">Mūsų technika</p>
+          <h2 class="display">Case, John Deere</h2>
         </div>
         <div class="works">
-          <!-- <img src="case-10.JPG" width="800" height="600" loading="lazy"
-            alt="Pievų smulkinimas traktoriumi su mulčeriu kelyje Utenos rajone" class="reputation__diag-img"> -->
           <img src="smulkinimas-1.jpg" width="800" height="600" loading="lazy"
             alt="Pievų smulkinimas traktoriumi su mulčeriu kelyje Utenos rajone" class="reputation__diag-img">
           <img src="case-5.JPG" width="800" height="600" loading="lazy"
@@ -334,8 +337,6 @@
             alt="Pievos mulčiavimas – susmulkinta žolė lauke" class="reputation__diag-img">
           <img src="smulkinimas-3.jpg" width="800" height="600" loading="lazy"
             alt="Du traktoriai su mulčeriais dideliame pievos plote" class="reputation__diag-img">
-          <!-- <img src="case-7.JPG" width="800" height="600" loading="lazy"
-            alt="Pievų smulkinimas traktoriumi su mulčeriu kelyje Utenos rajone" class="reputation__diag-img"> -->
         </div>
       </div>
     </section>
@@ -344,8 +345,8 @@
     <section class="section section--surface" id="duk">
       <div class="container">
         <div class="section__head">
-          <p class="eyebrow">Dažni klausimai</p>
-          <h2 class="display">Dažni klausimai</h2>
+          <p class="eyebrow">Dažnai užduodami klausimai</p>
+          <h2 class="display">Dažnai užduodami klausimai</h2>
         </div>
         <div class="faq">
           <details>
