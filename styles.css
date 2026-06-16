@@ -291,6 +291,443 @@ h3 { font-size: 17px; font-weight: 500; margin: 0 0 6px; }
 }
 @keyframes ticker { to { transform: translateX(-25%); } }
 
+/* --- Reputation sekcija (McAninch stilius) ------------------------------- */
+.reputation {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+  scroll-margin-top: calc(var(--header-h) + 12px);
+}
+
+/* Turinys (kairė pusė) */
+.reputation__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: clamp(48px, 8vw, 80px) 0;
+  margin-left: clamp(30px, 4vw, 360px);
+  max-width: 520px;
+}
+
+@media (min-width: 1100px) {
+  .reputation__content { margin-left: 14%; }
+}
+
+.reputation__inner {
+  position: relative;
+  opacity: 0;
+  transform: translateX(-2em);
+  transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1),
+              transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.reputation.is-active .reputation__inner {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Antraštė su geltonuoju akcentu */
+.reputation__heading {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0 0 24px;
+  position: relative;
+}
+
+.reputation__heading-chev {
+  position: relative;
+  white-space: nowrap;
+}
+.reputation__heading-chev::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 41%;
+  height: 125%;
+  width: 300%;
+  background-color: var(--amber);
+  transform: skew(-45deg);
+  transform-origin: top;
+  z-index: -1;
+}
+
+/* Tekstas */
+.reputation__text p {
+  margin: 0 0 8px;
+  color: var(--ink-muted);
+  font-size: clamp(16px, 1.6vw, 18px);
+  line-height: 1.7;
+}
+.reputation__text p strong {
+  color: var(--ink);
+  font-size: 1.1em;
+}
+
+/* Įstrižos nuotraukų dėžutės */
+.reputation__diag {
+  position: absolute;
+  z-index: 1;
+  overflow: hidden;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+}
+.reputation__diag-img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* Apatinė kairė nuotrauka */
+.reputation__diag--bl {
+  bottom: 0;
+  left: 0;
+  width: 35%;
+  height: 30%;
+  transform-origin: top;
+  transform: translateX(-100%) skew(-45deg);
+  transition-duration: 1s;
+}
+.reputation__diag--bl .reputation__diag-img {
+  width: 100%;
+  height: 100%;
+  transform: skew(45deg);
+  transform-origin: top;
+  transition-duration: 1s;
+}
+.reputation.is-active .reputation__diag--bl {
+  transform: translateX(0%) skew(-45deg);
+}
+.reputation.is-active .reputation__diag--bl .reputation__diag-img {
+  transform: skew(45deg);
+}
+
+/* Dešinės nuotraukos (didelės) */
+.reputation__diag--br {
+  right: 0;
+  top: 0;
+  width: 46%;
+  height: 98%;
+  transform-origin: bottom;
+  transform: translateX(100%) skew(-45deg);
+  transition-duration: 1s;
+}
+.reputation__diag--br .reputation__diag-img {
+  width: 200%;
+  min-height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  transform-origin: bottom;
+  transform: translateX(-50%) skew(45deg);
+  transition-duration: 1s;
+}
+.reputation.is-active .reputation__diag--br {
+  transform: translateX(0%) skew(-45deg);
+}
+.reputation.is-active .reputation__diag--br .reputation__diag-img {
+  transform: translateX(0%) skew(45deg);
+}
+
+/* Offset variacija (antra nuotrauka) */
+.reputation__diag--offset {
+  right: 10%;
+  width: 52%;
+  height: 90%;
+  transform: translateX(120%) skew(-45deg);
+  transition-duration: 1s;
+}
+.reputation__diag--offset .reputation__diag-img {
+  width: 200%;
+  height: 134%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform-origin: bottom;
+  transform: translateX(-55%) skew(45deg);
+  transition-duration: 1s;
+}
+.reputation.is-active .reputation__diag--offset {
+  transform: translateX(0%) skew(-45deg);
+}
+.reputation.is-active .reputation__diag--offset .reputation__diag-img {
+  transform: translateX(0%) skew(45deg);
+}
+
+/* Geltona permatomumo sluoksnis */
+.reputation__diag--overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(199, 90, 18, 0.55);
+  z-index: 2;
+}
+.reputation__diag--overlay {
+  transition-duration: .75s;
+}
+.reputation__diag--overlay .reputation__diag-img {
+  transition-duration: .75s;
+}
+
+/* Mobilus */
+@media (max-width: 768px) {
+  .reputation { min-height: auto; }
+
+  .reputation__content {
+    min-height: auto;
+    margin-left: var(--pad);
+    margin-right: var(--pad);
+    max-width: 100%;
+    padding: clamp(200px, 40vw, 300px) 0 clamp(48px, 8vw, 64px);
+  }
+
+  .reputation__dots { display: none; }
+
+  .reputation__diag--bl { display: none; }
+
+  .reputation__diag--br {
+    width: 100%;
+    height: 45%;
+    top: 0;
+    right: 0;
+    transform: translateX(100%) skew(-45deg);
+  }
+
+  .reputation__diag--offset {
+    width: 100%;
+    height: 40%;
+    right: 0;
+    transform: translateX(120%) skew(-45deg);
+  }
+
+  .reputation__diag--overlay {
+    width: 100%;
+    height: 35%;
+  }
+}
+
+/* --- Family sekcija (McAninch stilius) ----------------------------------- */
+.family {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+  scroll-margin-top: calc(var(--header-h) + 12px);
+}
+
+/* Turinys (kairė pusė) */
+.family__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: clamp(48px, 8vw, 80px) 0;
+  margin-left: 12%;
+  max-width: 520px;
+}
+
+.family__inner {
+  position: relative;
+  opacity: 0;
+  transform: translateX(-2em);
+  transition: opacity .5s cubic-bezier(0.77, 0, 0.175, 1),
+              transform .5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.family.is-active .family__inner {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Antraštė su geltonuoju akcentu */
+.family__heading {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0 0 24px;
+  position: relative;
+}
+.family__heading-chev {
+  position: relative;
+  white-space: nowrap;
+}
+.family__heading-chev::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 41%;
+  height: 125%;
+  width: 300%;
+  background-color: var(--amber);
+  transform: skew(-45deg);
+  transform-origin: top;
+  z-index: -1;
+}
+
+/* Tekstas */
+.family__text p {
+  margin: 0 0 10px;
+  color: var(--ink-muted);
+  font-size: clamp(15px, 1.6vw, 18px);
+  line-height: 1.7;
+}
+.family__text p strong {
+  color: var(--ink);
+  font-size: 1.1em;
+}
+.family__step-num {
+  font-family: var(--font-display);
+  color: var(--amber);
+  font-size: 1.1em;
+  margin-right: 6px;
+}
+.family__cta {
+  margin-top: 20px;
+}
+
+/* Dešinė didelė nuotrauka */
+.family__diag--br {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+  transform-origin: bottom;
+  transform: translateX(100%) skew(-45deg);
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.family__diag--br .family__diag-img {
+  width: 200%;
+  min-height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform-origin: right;
+  transform: translateX(-50%) skew(45deg);
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.family.is-active .family__diag--br {
+  transform: translateX(0%) skew(-45deg);
+}
+.family.is-active .family__diag--br .family__diag-img {
+  transform: translateX(0%) skew(45deg);
+}
+
+/* Geltona permatomumo sluoksnis */
+.family__diag--overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(199, 90, 18, 0.55);
+  z-index: 2;
+}
+
+/* Viršutinės 3 mini nuotraukos (tripple) */
+.family__tripple {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  overflow: hidden;
+  height: 43%;
+  width: 24%;
+  transform: translateX(100%) skew(-45deg);
+  transition: transform cubic-bezier(0.77, 0, 0.175, 1);
+}
+.family__tripple-inner {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  transform: translateX(-100%);
+  transition: transform cubic-bezier(0.77, 0, 0.175, 1);
+}
+.family__tripple-inner .family__diag-img {
+  width: 200%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform-origin: bottom;
+  transform: skew(45deg);
+}
+
+.family__tripple--1 {
+  right: 54%;
+  z-index: 2;
+  transition-duration: .5s;
+}
+.family__tripple--1 .family__tripple-inner { transition-duration: .5s; }
+
+.family__tripple--2 {
+  right: 27%;
+  z-index: 3;
+  transition-duration: 1s;
+}
+.family__tripple--2 .family__tripple-inner { transition-duration: 1s; }
+
+.family__tripple--3 {
+  right: 0%;
+  z-index: 3;
+  transition-duration: .25s;
+}
+.family__tripple--3 .family__tripple-inner { transition-duration: .25s; }
+
+/* Aktyvus — tripple animacija */
+.family.is-active .family__tripple {
+  transform: translateX(0%) skew(-45deg);
+}
+.family.is-active .family__tripple-inner {
+  transform: translateX(0%);
+}
+
+/* Mobilus */
+@media (max-width: 768px) {
+  .family { min-height: auto; }
+
+  .family__content {
+    min-height: auto;
+    margin-left: var(--pad);
+    margin-right: var(--pad);
+    max-width: 100%;
+    padding: clamp(200px, 40vw, 300px) 0 clamp(48px, 8vw, 64px);
+  }
+
+  .family__diag--br {
+    display: none;
+  }
+
+  .family__tripple {
+    height: 28%;
+    width: 38%;
+  }
+  .family__tripple--1 { right: auto; left: 0; }
+  .family__tripple--2 { right: auto; left: 30%; }
+  .family__tripple--3 { right: 0; }
+}
+
 /* --- Sekcijos ----------------------------------------------------------- */
 .section { padding: clamp(44px, 7vw, 80px) 0; scroll-margin-top: calc(var(--header-h) + 12px); }
 .section--surface { background: var(--surface); }
@@ -347,9 +784,9 @@ h3 { font-size: 17px; font-weight: 500; margin: 0 0 6px; }
 
 /* Darbai */
 .works {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
 }
-.works img { aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; width: 100%; }
+.works img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; clip-path: polygon(25% 0, 100% 0, 75% 100%, 0 100%); }
 
 /* DUK — <details> akordeonas, JS nereikia */
 .faq { max-width: 760px; }

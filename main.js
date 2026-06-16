@@ -31,6 +31,18 @@
     });
   }
 
+  // Scroll animacijos (reputation + family sekcijos)
+  document.querySelectorAll('.reputation, .family').forEach(function (section) {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-active');
+        }
+      });
+    }, { threshold: 0.15 });
+    obs.observe(section);
+  });
+
   // Footerio metai
   const metai = document.getElementById('metai');
   if (metai) { metai.textContent = String(new Date().getFullYear()); }
