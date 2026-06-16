@@ -79,9 +79,10 @@ h3 { font-size: 17px; font-weight: 500; margin: 0 0 6px; }
 
 .lead { font-size: clamp(15px, 1.8vw, 18px); color: var(--ink-muted); max-width: 60ch; }
 
+/* Bazinis .btn – neutralus, be geometrijos */
 .btn {
   position: relative;
-  isolation: isolate;            /* tekstas lieka virš ::before */
+  isolation: isolate;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -90,15 +91,35 @@ h3 { font-size: 17px; font-weight: 500; margin: 0 0 6px; }
   font-weight: 500;
   font-size: 15px;
   text-decoration: none;
-  padding: 14px 36px;            /* platesnis horizontalus tarpas įstrižiems kraštams */
-  background: transparent;       /* tikrasis fonas perkeltas į ::before */
-  border: 0;
+  padding: 13px 24px;
+  border-radius: 3px;
+  border: 1px solid transparent;
   cursor: pointer;
-  transition: transform .05s ease;
+  transition: background-color .15s ease, transform .05s ease;
 }
+.btn:active { transform: scale(.98); }
 
-/* Įstriža (45°) plokštė – tik fonui, tekstas nesisukamas */
-.btn::before {
+.btn--amber { background: var(--amber); color: #fff; }
+.btn--amber:hover { background: var(--amber-dark); }
+.btn--ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.45); }
+.btn--ghost:hover { background: rgba(255,255,255,.12); }
+
+/* Nav mygtukas – stačiakampis, jokio ::before */
+.nav__cta { padding: 9px 16px; font-size: 14px; }
+
+/* Hero mygtukas – stačiakampis */
+.hero__cta-btn { align-self: flex-start; }
+
+/* Kontaktų sekcija – čia paliekame lygiagretainį per ::before */
+.contact .btn {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+  border: 0;
+  padding: 14px 40px;
+  border-radius: 0;
+}
+.contact .btn::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -108,22 +129,31 @@ h3 { font-size: 17px; font-weight: 500; margin: 0 0 6px; }
   border: 1px solid transparent;
   transition: background-color .15s ease, border-color .15s ease;
 }
+.contact .btn--amber::before { background: var(--amber); }
+.contact .btn--amber:hover::before { background: var(--amber-dark); }
+.contact .btn--ghost::before { background: transparent; border-color: rgba(255,255,255,.45); }
+.contact .btn--ghost:hover::before { background: rgba(255,255,255,.12); }
 
-.btn:active { transform: scale(.98); }
-
-.btn--amber { color: #fff; }
-.btn--amber::before { background: var(--amber); }
-.btn--amber:hover::before { background: var(--amber-dark); }
-
-.btn--ghost { color: #fff; }
-.btn--ghost::before { background: transparent; border-color: rgba(255,255,255,.45); }
-.btn--ghost:hover::before { background: rgba(255,255,255,.12); }
-
-/* Mažas nav mygtukas – daugiau horizontalaus tarpo posvyriui */
-.nav__cta { padding: 9px 28px; font-size: 14px; }
-
-/* Kontaktų sekcija – didesnis tarpas, kad dvi plokštės nepersidengtų */
-.contact__cta { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; margin-top: 22px; }
+/* „Kaip vyksta" mygtukas – irgi lygiagretainis (šalia įstrižų nuotraukų) */
+.family .btn {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+  border: 0;
+  padding: 14px 40px;
+  border-radius: 0;
+}
+.family .btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: skewX(-45deg);
+  border-radius: 2px;
+  background: var(--amber);
+  transition: background-color .15s ease;
+}
+.family .btn:hover::before { background: var(--amber-dark); }
 
 /* --- Skip link ---------------------------------------------------------- */
 .skip-link {
