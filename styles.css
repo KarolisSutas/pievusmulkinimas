@@ -842,11 +842,6 @@ h3 { font-size: 17px; font-weight: 500; margin: 0 0 6px; }
 .step p { margin: 0; color: var(--ink-muted); font-size: 15px; }
 
 /* Kaina */
-/* .pricing { display: grid; grid-template-columns: 1fr; gap: 8px; }
-.pricing .price { font-family: var(--font-display); font-size: clamp(28px, 5vw, 40px); color: var(--green); }
-.pricing .note { color: var(--ink-muted); } */
-
-/* Kaina */
 .pricing-grid {
   display: grid;
   grid-template-columns: 1fr 1px 1fr 1px 1fr;
@@ -893,12 +888,130 @@ h3 { font-size: 17px; font-weight: 500; margin: 0 0 6px; }
   }
 }
 
-/* Regionas */
-.region__towns { list-style: none; margin: 16px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-.region__towns li {
-  background: #fff; border: 1px solid rgba(21,24,26,.10);
-  border-radius: 999px; padding: 7px 14px; font-size: 14px;
+/* ==========================================================================
+   #regionas — žemėlapio sekcija (pridėti į styles.css, pakeičia .region__towns)
+   Naudoja esamus :root kintamuosius (--green, --amber, --ink, --ink-muted...)
+   ========================================================================== */
+
+/* Dviejų stulpelių tinklelis: tekstas | žemėlapis */
+.region-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(28px, 5vw, 56px);
+  align-items: center;
 }
+@media (min-width: 880px) {
+  .region-grid { grid-template-columns: 0.82fr 1fr; }
+}
+
+.region-grid__text .lead { margin-top: 14px; }
+
+/* „iki 50 km" eilutė su pin ikona */
+.region-grid__radius {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 18px 0 0;
+  font-size: 15px;
+  color: var(--ink-muted);
+  line-height: 1.6;
+}
+.region-grid__radius strong { color: var(--ink); white-space: nowrap; }
+.region-grid__radius-icon {
+  flex: none;
+  color: var(--green);
+  margin-top: 1px;
+}
+.region-grid__radius-icon svg { width: 20px; height: 20px; display: block; }
+
+.region-grid__cta { margin-top: 24px; align-self: flex-start; }
+
+/* --- Žemėlapis ----------------------------------------------------------- */
+.region-grid__map {
+  width: 100%;
+  max-width: 540px;
+  margin-inline: auto;
+}
+.region-map__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Rajono plotas (žalsva „žemė") + kraštinė brandos žalia */
+.region-map__land {
+  fill: var(--on-green);
+  stroke: var(--green);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+/* Vandens ženklas plote */
+.region-map__wm {
+  font-family: var(--font-display);
+  fill: var(--green-dark);
+  opacity: 0.6;
+  letter-spacing: 0.08em;
+}
+
+/* Miestų etiketės */
+.region-map__label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  fill: var(--ink-muted);
+}
+.region-map__label--hub {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  fill: var(--ink);
+}
+
+/* Žymekliai */
+.region-map__dot      { fill: var(--green); }
+.region-map__dot--hub { fill: var(--amber); }
+.region-map__ring      { stroke: var(--green); fill: none; stroke-width: 1.1; }
+.region-map__ring--hub { stroke: var(--amber); fill: none; stroke-width: 1.4; }
+
+/* Pulsavimo animacija */
+.region-map__pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: region-pulse 2.4s ease-out infinite;
+}
+.region-map__pulse--2 { animation-delay: 0.8s; }
+.region-map__pulse--3 { animation-delay: 1.6s; }
+
+@keyframes region-pulse {
+  0%   { r: 7px;  opacity: 0.55; }
+  100% { r: 25px; opacity: 0; }
+}
+
+/* --- Legenda po žemėlapiu ------------------------------------------------ */
+.region-map__legend {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+.region-map__legend li { display: flex; align-items: center; gap: 8px; }
+.region-map__legend-dot {
+  width: 11px; height: 11px; border-radius: 50%;
+  background: var(--green); flex: none;
+}
+.region-map__legend-dot--hub { width: 13px; height: 13px; background: var(--amber); }
+
+/* --- Reduced motion ----------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .region-map__pulse { animation: none; opacity: 0; }
+}
+
 
 /* Darbai */
 .works {
