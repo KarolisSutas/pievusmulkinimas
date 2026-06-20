@@ -31,8 +31,8 @@
     });
   }
 
-  // Scroll animacijos (reputation + family sekcijos)
-  document.querySelectorAll('.reputation, .family').forEach(function (section) {
+  // Scroll animacijos (service + order sekcijos)
+  document.querySelectorAll('.service, .order').forEach(function (section) {
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
