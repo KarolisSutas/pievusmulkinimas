@@ -360,6 +360,19 @@ h3 { font-size: 17px; font-weight: 500; margin: 0 0 6px; }
   z-index: -1;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;   /* neleidžia keistai lūžti */
+}
+
 .hero__body { margin-bottom: 28px; }
 
 .hero__subtitle {
