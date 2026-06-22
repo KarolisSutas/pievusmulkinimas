@@ -14,11 +14,22 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="lt_LT">
+  <meta property="og:site_name" content="Pievų smulkinimas">
   <meta property="og:url" content="https://pievusmulkinimas.lt/">
   <meta property="og:title" content="Pievų smulkinimas Utenos rajone">
   <meta property="og:description"
     content="Pievų smulkinimas, mulčiavimas ir šienavimas Utenos rajone. Apleistos ir deklaruojamos pievos. Skambinkite +370 625 14383.">
   <meta property="og:image" content="https://pievusmulkinimas.lt/smulkinimas-og.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Pievų smulkinimas traktoriumi su mulčeriu Utenos rajone">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pievų smulkinimas Utenos rajone">
+  <meta name="twitter:description"
+    content="Pievų smulkinimas, mulčiavimas ir šienavimas Utenos rajone. Apleistos ir deklaruojamos pievos.">
+  <meta name="twitter:image" content="https://pievusmulkinimas.lt/smulkinimas-og.webp">
 
   <!-- Šriftai: kūrimo metu – Google Fonts; produkcijoje self-host (.woff2) + preload -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,31 +37,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Hero – LCP zonos elementas -->
-  <link rel="preload" as="image" href="smulkinimas-1.webp" type="image/webp">
+  <link rel="preload" as="image" href="smulkinimas-1-revert.webp" type="image/webp" fetchpriority="high">
 
   <link rel="stylesheet" href="styles.css">
 
-  <!-- Schema: LocalBusiness -->
-  <script type="application/ld+json">
+<!-- Schema: LocalBusiness -->
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": "https://pievusmulkinimas.lt/#business",
     "name": "Aukštaitijos vilktis",
+    "legalName": "UAB Jugila",
     "url": "https://pievusmulkinimas.lt",
-    "image": "https://pievusmulkinimas.lt/images/og.webp",
+    "image": "https://pievusmulkinimas.lt/smulkinimas-og.webp",
     "description": "Pievų smulkinimas, mulčiavimas ir šienavimas Utenos rajone. Apleistos ir deklaruojamos pievos.",
     "telephone": "+37062514383",
     "email": "info@aukstaitijosvilktis.lt",
     "areaServed": { "@type": "AdministrativeArea", "name": "Utenos rajonas" },
     "address": {
       "@type": "PostalAddress",
+      "addressLocality": "Utena",
       "addressRegion": "Utenos apskritis",
       "addressCountry": "LT"
     },
     "priceRange": "€€",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "06:00",
+      "closes": "21:00"
+    },
     "identifier": [
-      { "@type": "PropertyValue", "propertyID": "VAT", "value": "{{PVM_KODAS}}" },
-      { "@type": "PropertyValue", "propertyID": "company-code", "value": "{{IMONES_KODAS}}" }
+      { "@type": "PropertyValue", "propertyID": "VAT", "value": "LT100014002319" },
+      { "@type": "PropertyValue", "propertyID": "company-code", "value": "305715513" }
     ]
   }
   </script>
@@ -62,13 +82,21 @@
     "@type": "Service",
     "name": "Pievų smulkinimas",
     "serviceType": "Pievų smulkinimas, mulčiavimas ir šienavimas",
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "Aukštaitijos vilktis",
-      "url": "https://pievusmulkinimas.lt"
-    },
+    "provider": { "@id": "https://pievusmulkinimas.lt/#business" },
     "areaServed": { "@type": "AdministrativeArea", "name": "Utenos rajonas" },
-    "description": "Apleistų ir deklaruojamų pievų smulkinimas traktoriumi su mulčeriu. Mulčiavimas, šienavimas, plotų palaikymas išmokoms."
+    "description": "Apleistų ir deklaruojamų pievų smulkinimas traktoriumi su mulčeriu. Mulčiavimas, šienavimas, plotų palaikymas išmokoms.",
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "EUR",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "60",
+        "priceCurrency": "EUR",
+        "minPrice": "60",
+        "unitCode": "HAR",
+        "unitText": "ha"
+      }
+    }
   }
   </script>
 
@@ -83,7 +111,7 @@
         "name": "Kiek kainuoja pievų smulkinimas?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Kaina priklauso nuo ploto (ha) ir pievos būklės – ar tai reguliariai prižiūrima pieva, ar apleistas, krūmais apaugęs plotas. Tikslią kainą pasakome telefonu po trumpo pokalbio apie plotą ir vietą."
+          "text": "Kaina nuo 60 EUR/ha, priklauso nuo ploto (ha) ir pievos būklės – ar tai reguliariai prižiūrima pieva, ar apleistas, krūmais apaugęs plotas. Tikslią kainą pasakome telefonu po trumpo pokalbio apie plotą ir vietą."
         }
       },
       {
@@ -107,7 +135,7 @@
         "name": "Per kiek laiko sutvarkote apleistą pievą?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Priklauso nuo ploto ir užaugimo. Vidutiniškai per dieną susmulkiname iki {{HA_PER_DIENA}} ha. Tikslų laiką suderiname iš anksto."
+          "text": "Priklauso nuo ploto ir užaugimo. Vidutiniškai per dieną susmulkiname nuo 50 ha. Tikslų laiką suderiname iš anksto."
         }
       },
       {
@@ -176,8 +204,10 @@
       <div class="hero__left">
         <p class="hero__eyebrow">Utenos rajonas</p>
         <h1 class="hero__title">
-          <span class="hero__title-line">Pievų<span class="service__heading-chev" style="color: transparent;">ss</span></span><br>
-          <span class="hero__title-line">smulkinimas</span>
+          <h1 class="hero__title">
+            <span class="hero__title-line">Pievų<span class="hero__title-chev" aria-hidden="true"></span></span><br>
+            <span class="hero__title-line">smulkinimas</span>
+          </h1>
         </h1>
         <div class="hero__body">
           <p class="hero__subtitle">Dirbame tvarkingai ir greitai.</p>
@@ -457,7 +487,7 @@
         <div class="faq">
           <details>
             <summary>Kiek kainuoja pievų smulkinimas? <span class="plus" aria-hidden="true">+</span></summary>
-            <p>Kaina priklauso nuo ploto (ha) ir pievos būklės – ar tai reguliariai prižiūrima pieva, ar apleistas,
+            <p>Kaina nuo 60 EUR/ha, priklauso nuo ploto (ha) ir pievos būklės – ar tai reguliariai prižiūrima pieva, ar apleistas,
               krūmais apaugęs plotas. Tikslią kainą pasakome telefonu po trumpo pokalbio apie plotą ir vietą.</p>
           </details>
           <details>
@@ -475,7 +505,7 @@
           </details>
           <details>
             <summary>Per kiek laiko sutvarkote apleistą pievą? <span class="plus" aria-hidden="true">+</span></summary>
-            <p>Priklauso nuo ploto ir užaugimo. Vidutiniškai per dieną susmulkiname iki {{HA_PER_DIENA}} ha. Tikslų
+            <p>Priklauso nuo ploto ir užaugimo. Vidutiniškai per dieną susmulkiname nuo 50 ha. Tikslų
               laiką suderiname iš anksto.</p>
           </details>
           <details>
