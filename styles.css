@@ -104,9 +104,6 @@ h3 { font-size: 17px; font-weight: 500; margin: 0 0 6px; }
 .btn--ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.45); }
 .btn--ghost:hover { background: rgba(255,255,255,.12); }
 
-/* Nav mygtukas – stačiakampis, jokio ::before */
-.nav__cta { padding: 9px 16px; font-size: 14px; }
-
 /* Hero mygtukas – lygiagretainis */
 .hero__cta-btn {
   align-self: flex-start;
@@ -322,7 +319,7 @@ h3 { font-size: 17px; font-weight: 500; margin: 0 0 6px; }
 .hero__eyebrow {
   font-family: var(--font-body);
   font-weight: 500;
-  font-size: 11px;
+  font-size: clamp(10px, 1.5vw, 16px);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--green);
@@ -1178,6 +1175,7 @@ h3 { font-size: 17px; font-weight: 500; margin: 0 0 6px; }
 
 @media (max-width: 460px) {
   .works { grid-template-columns: 1fr; }
+  .nav__cta { display: none; }
 }
 
 /* --- Reduced motion ----------------------------------------------------- */
