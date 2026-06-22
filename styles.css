@@ -505,6 +505,16 @@ h3 { font-size: 17px; font-weight: 500; margin: 0 0 6px; }
   transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
+/* Įstrižos nuotraukos kaip <img> (vietoj background-image) */
+.service__diag-img,
+.order__diag-img {
+  height: 100%;
+  max-width: none;          /* atšaukia global img { max-width:100% } – kad veiktų width:200% */
+  object-fit: cover;        /* atstoja background-size: cover */
+  object-position: center;  /* atstoja background-position: center */
+  display: block;
+}
+
 /* Apatinė kairė nuotrauka */
 .service__diag--bl {
   bottom: 0;
