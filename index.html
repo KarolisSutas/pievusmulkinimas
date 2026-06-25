@@ -29,10 +29,9 @@
     content="Pievų smulkinimas, mulčiavimas ir šienavimas Utenos rajone. Apleistos ir deklaruojamos pievos.">
   <meta name="twitter:image" content="https://pievusmulkinimas.lt/smulkinimas-og.webp">
 
-  <!-- Šriftai: kūrimo metu – Google Fonts; produkcijoje self-host (.woff2) + preload -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Šriftai: self-hosted .woff2 (latin + latin-ext) -->
+  <link rel="preload" href="/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/dm-sans-400.woff2" as="font" type="font/woff2" crossorigin>
 
   <link rel="preload" as="image" href="smulkinimas-1-revert.webp" type="image/webp" fetchpriority="high">
 

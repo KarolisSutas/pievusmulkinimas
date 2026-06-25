@@ -3,6 +3,23 @@
    Paletė 60-30-10 · Anton (antraštės) + DM Sans (tekstas)
    ========================================================================== */
 
+/* --- Self-hosted fontai (latin + latin-ext, combined) --- */
+@font-face {
+  font-family: 'Anton';
+  font-style: normal; font-weight: 400; font-display: block;
+  src: url('/fonts/anton-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal; font-weight: 400; font-display: block;
+  src: url('/fonts/dm-sans-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal; font-weight: 500; font-display: block;
+  src: url('/fonts/dm-sans-500.woff2') format('woff2');
+}
+
 :root {
   /* Spalvos */
   --bg:          #FAFAF8;   /* ~60% neutralus pagrindas */
